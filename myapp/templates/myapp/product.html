@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-container">
+	{% for img in p.p_image %}
+		<img src="{% static 'imgs/' %}{{img}}"  width="160px" height="160px">
+	{% endfor %}
+	<h2>รหัสสินค้า: {{p.p_id}}</h2>
+	<h2>ชื่อสินค้า: {{p.p_name}}</h2>
+	<h2>รายละเอียดสินค้า: {{p.p_desc}}</h2>
+	<h2>ราคา: {{p.p_price}}</h2>
+	<h2>ราคาขาย: {{p.p_sale}}</h2>
+	<h2>ชื่อร้าน: {{p.store_name}}</h2>
+	<h2>ผู้ขาย: {{p.vendor}}</h2>
+	<h2>วันที่เพิ่มสินค้า: {{p.insert_date|date:'j F Y'}} {{p.insert_date|time:'H:i A'}}</h2>
+	<h2>วันที่แก้ไขสินค้า: {{p.update_date|date:'j F Y'}}</h2>
+</div>

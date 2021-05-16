@@ -1,0 +1,74 @@
+{% load tz %}
+<h1>Hello, My Django Templates</h1>
+<p>
+	<h2>My Filters</h2>
+	<b>[Date]</b><br>
+	First name: {{first_name}}<br>
+	Last name: {{last_name}}<br>
+	Birth date: {{birth_date|date}}<br> <!-- default คือ N j Y -->
+	Birth date: {{birth_date|date:'j F Y'}} {{birth_date|time:'H:i A'}}<br>
+	Age: {{birth_date|timesince}} old<br>
+	Address: {{addr.home}}<br>
+	Address: {{addr.present}}<br>
+	Address: {{addr.work}}<br>
+	<hr>
+	<!-- <b>[Date]</b><br> -->
+	{{ text|wordwrap:2|linebreaksbr }}<br>
+
+	{% now "jS F Y H:i" as current_date %}
+	{% get_current_timezone as TIME_ZONE %}
+	<hr>
+	<b>[Forms]</b><br>
+	<form action="polls/">
+		{% csrf_token %} <!-- ป้องกันการ hack หรือการถูกโจมตี -->
+		<p>Author: <input type="text" name="author"></p>
+		<input type="submit" name="submit">
+	</form>
+	<hr>
+	<b>[Comparison]</b><br>
+	{% if first_name|length < 4 %}
+		Your name is short.
+	{% else %}
+		Your name is {{first_name}}.<br>
+	{% endif %}
+
+	{% with my_int=3 %}
+	{% if my_int > 0 %}
+		{{my_int}} is positive.
+	{% elif my_int < 0 %}
+		{{my_int}} is negative.
+	{% else %}
+		{{my_int}} is zero.
+	{% endif %}
+	{% endwith %}<br>
+
+	<!-- and, or, not, >=, <= -->
+	{% if logged_in|yesno and e_mail|length > 0 %}
+		Welcome to my app.
+	{% else %}
+		Sorry, please try again.
+	{% endif %}<br>
+
+	<hr>
+	<b>Subject</b><br>
+	<ul>
+	{% for x in subject %}
+		<li>{{x}}</li>
+	{% endfor %}
+	</ul>
+
+	<!-- anchor <a> -->
+	<hr>
+	<b>Web URL</b><br>
+	<ul>
+	{% for w in web %}
+		<li><a href="{{w.url}}" target="_blank">{{w.label}}</a></li>
+	{% endfor %}
+	</ul>
+	<hr>
+	{% for b in book|dictsort:"author.name" %}
+		<p>{{b.title}} ({{b.author.name}}), {{b.publish_year}}</p>
+	{% endfor %}
+	<hr>
+	<footer>Lasted access: {{current_date}}, {{TIME_ZONE}}</footer>
+</p>

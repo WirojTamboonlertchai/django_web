@@ -1,0 +1,9 @@
+<h1>Contact Form</h1>
+<form method="POST" action="">
+	{% csrf_token %}
+	<table>
+		{{form.as_table}}
+	</table>
+	<input type="submit" value="Send form">
+	<input type="submit" value="Clear form">
+</form>

@@ -1,0 +1,10 @@
+<h1>Polls Application Homepage:</h1>
+<h2>{{question}}</h2>
+
+<ul>
+	{% for c in question.choice_set.all %} <!-- ใส่ 'ชื่อตาราง_set' อ้างถึงตารางที่เกี่ยวข้องกับเงื่อนไขที่กำหนด -->
+		<li>{{c.choice_text}}</li>
+	{% endfor %}
+</ul>
+
+<a href="/polls/"><< Home >></a>

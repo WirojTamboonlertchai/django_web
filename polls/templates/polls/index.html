@@ -1,0 +1,21 @@
+<h1>Polls Application Homepage</h1>
+{% if question_list %}
+	<ul>
+		{% for q in question_list %}
+			<li>
+				<!-- ตำแหน่งของ q.id เรียกว่า converter --> 
+				<!-- <a href="/polls/{{q.id}}/">{{q.question_text}}</a> -->
+				<a href="{% url 'polls:detail' q.id %}">{{q.question_text}}</a> 
+				<!-- <span>{{q.pub_date}}</span> -->
+				<br><a href="{% url 'polls:delete' q.id %}" onclick="return confirm('Are you sure?');">[Delete]</a>
+				<a href="{% url 'polls:edit' q.id %}">[Edit]</a>
+			</li>
+			<hr>
+		{% endfor %}
+	</ul>
+	
+{% else %}
+	<p style="color: red;">No polls are available.</p>
+{% endif %}
+
+

@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-container">
+{% for p in products %}
+	<h2>{{p.p_name}}</h2>
+	{% for img in p.p_image %}
+		<img src="{% static 'imgs/' %}{{img}}" width="160px" height="160px">
+	{% endfor %}
+	<br>
+	<a href="./product/{{p.p_id}}">See detail</a>
+{% endfor %}
+</div>

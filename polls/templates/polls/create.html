@@ -1,0 +1,6 @@
+<h1>Create</h1>
+<form action="{% url 'polls:create'%}" method="post">
+	{% csrf_token %}
+	{{form.as_p}} <!-- .as_p ทำให้ข้อมูลในฟอร์มมีการเว้นวรรค -->
+	<input type="submit" value="Create">
+</form>
